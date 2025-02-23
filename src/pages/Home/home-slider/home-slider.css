@@ -1,5 +1,6 @@
 .home__slider {
     width: 100%;
+    transition: all 0.3s ease;
 }
 .home__slider--img {
     width: 100%;
@@ -22,12 +23,20 @@
     content: '' !important;
 }
 
-.swiper-button-prev {
+.swiper-button-next {
     width: 52px;
     height: 52px;
-    background-image: url('../../../assets/svg/left-icon.svg') !important;
+    background-image: url('../../../assets/svg/right-icon.svg') !important;
     background-color: white !important;
     background-repeat: no-repeat;
     border-radius: 50%;
     background-position: 50% 50%;
+}
+.swiper-pagination-bullet {
+    background-color: #fff;
+}
+.swiper-pagination-bullet-active {
+    width: 30px;
+    height: 8px;
+    border-radius: 10px;
 }
