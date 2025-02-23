@@ -40,3 +40,12 @@
     height: 8px;
     border-radius: 10px;
 }
+
+@media screen and (max-width: 800px) {
+    .swiper-button-prev {
+        display: none;
+    }
+    .swiper-button-next {
+        display: none;
+    }
+}
