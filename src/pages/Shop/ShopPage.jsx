@@ -1,5 +1,9 @@
+import { Hero } from "./shop-hero/hero";
+
 const ShopPage = () => {
-  return <div>Shop Page</div>;
+  return (
+    <Hero />
+  )
 };
 
 export default ShopPage;
