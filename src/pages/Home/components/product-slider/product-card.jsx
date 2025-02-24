@@ -1,4 +1,4 @@
-import Reating from "../../../assets/svg/reating.svg";
+import Reating from "@/assets/svg/reating.svg";
 
 export const ProductCard = ({
   img,
@@ -23,7 +23,9 @@ export const ProductCard = ({
         </span>
         {skidka ? (
           <span className=" absolute py-[4px] px-[14px] top-[48px] left-[16px] bg-[#38CB89] rounded-[4px]">
-            <p className="font-bold text-[16px] leading-[100%] text-[#fff] text-center">{skidka}</p>
+            <p className="font-bold text-[16px] leading-[100%] text-[#fff] text-center">
+              {skidka}
+            </p>
           </span>
         ) : (
           ""
