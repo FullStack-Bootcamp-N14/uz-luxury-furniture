@@ -7,23 +7,23 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
-import SliderImg from '../../../assets/png/slider-img1.png'
-import './home-slider.css'
+import SliderImg from "@/assets/png/slider-img1.png";
+import "./home-slider.css";
 
 const data = [
-    {
-        id: 1,
-        url: SliderImg
-    },
-    {
-        id: 2,
-        url: SliderImg
-    },
-    {
-        id: 3,
-        url: SliderImg
-    },
-]
+  {
+    id: 1,
+    url: SliderImg,
+  },
+  {
+    id: 2,
+    url: SliderImg,
+  },
+  {
+    id: 3,
+    url: SliderImg,
+  },
+];
 
 const HomeSlider = () => {
   return (
@@ -40,11 +40,11 @@ const HomeSlider = () => {
           modules={[Pagination, Navigation]}
           className="home__slider"
         >
-            {data.map((item) => (
-                <SwiperSlide key={item.id}>
-                  <img className="home__slider--img" src={item.url} alt="img" />  
-                </SwiperSlide>
-            ))}
+          {data.map((item) => (
+            <SwiperSlide key={item.id}>
+              <img className="home__slider--img" src={item.url} alt="img" />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </>

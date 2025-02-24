@@ -1,4 +1,4 @@
-import HomeSlider from "./home-slider/home-slider";
+import HomeSlider from "./components/home-slider/home-slider";
 
 const HomePage = () => {
   return (
