@@ -1,0 +1,10 @@
+.product__card--slider .swiper-slide {
+  width: 231px !important;
+  flex-shrink: 0;
+}
+
+@media screen and (min-width: 1280px) {
+  .product__card--slider .swiper-slide {
+    width: 262px !important;
+  }
+}
