@@ -4,11 +4,11 @@ import { Arrivals } from "./components/product-slider/arrivals";
 
 const HomePage = () => {
   return (
-    <div>
+    <main>
       <HomeSlider />
       <Arrivals />
       <Info />
-    </div>
+    </main>
   );
 };
 
