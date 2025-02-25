@@ -1,5 +1,7 @@
+import { ReklamaHome } from "./components/reklama";
+
 const HomePage = () => {
-  return <div>Home Page</div>;
+  return <div><ReklamaHome /> </div>;
 };
 
 export default HomePage;
