@@ -1,0 +1,15 @@
+
+
+@media screen and (max-width:375px) {
+    .article_title{
+        width:311px;
+        height: 38px;
+        border-color: brown;
+        border:2px solid red;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+   
+}

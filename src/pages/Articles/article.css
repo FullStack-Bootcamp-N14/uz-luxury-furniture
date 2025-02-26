@@ -1,0 +1,12 @@
+@media screen  and (max-width:375px) {
+    .article{
+        width: 375px;
+        height: 1277px;
+        margin-right: auto;
+        margin-left: auto; 
+    }
+    .articlecard{
+       display: block;
+       padding-left: 8px;
+    }
+}
