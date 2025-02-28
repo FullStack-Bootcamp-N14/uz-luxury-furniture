@@ -1,0 +1,7 @@
+.skroll::-webkit-scrollbar {
+    display: none;
+}
+
+.skroll {
+    scrollbar-width: none;
+}
