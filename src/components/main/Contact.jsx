@@ -2,7 +2,7 @@ import React from "react";
 import letterIcon from "@/assets/svg/letter-icon.svg";
 import { useForm } from "react-hook-form";
 
-export const Contact = () => {
+const Contact = () => {
   const {
     handleSubmit,
     register,
@@ -50,3 +50,5 @@ export const Contact = () => {
     </section>
   );
 };
+
+export default Contact;
