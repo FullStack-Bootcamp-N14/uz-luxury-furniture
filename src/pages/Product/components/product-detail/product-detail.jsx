@@ -11,7 +11,7 @@ export const ProductDetail = () => {
     window.scrollTo({ top: 100, behavior: "smooth" });
   }, [colorIndex]);
   return (
-    <section className="mb-[570px] mt-[100px]">
+    <section className="">
       <div className="container">
         <div className=" ">
           <div className=" flex gap-[16px] items-center py-[16px]">
