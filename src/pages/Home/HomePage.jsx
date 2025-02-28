@@ -12,8 +12,8 @@ const HomePage = () => {
       <ServiceGrid />
       <Arrivals />
       <Info />
-      <Contact />
       <Article />
+      <Contact />
     </main>
   );
 };
