@@ -1,3 +1,4 @@
+import Contact from "@/components/main/Contact";
 import { Article } from "../Articles/article";
 import HomeSlider from "./components/home-slider/home-slider";
 import { Info } from "./components/info-grid/info";
@@ -11,6 +12,7 @@ const HomePage = () => {
       <ServiceGrid />
       <Arrivals />
       <Info />
+      <Contact />
       <Article />
     </main>
   );
