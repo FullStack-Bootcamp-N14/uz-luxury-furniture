@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "./slider.css";
 import { ProductData } from "@/pages/Home/data/data";
-import { ProductCard } from "./product-card";
+import { ProductCard } from "@/components/main/ProductCard";
 
 export const SliderCard = () => {
   return (
