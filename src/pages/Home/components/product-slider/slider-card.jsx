@@ -3,7 +3,7 @@ import { Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "./slider.css";
-import { ProductData } from "@/pages/home/data/data";
+import { ProductData } from "@/pages/Home/data/data";
 import { ProductCard } from "./product-card";
 
 export const SliderCard = () => {

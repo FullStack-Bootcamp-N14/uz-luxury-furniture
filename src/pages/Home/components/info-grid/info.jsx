@@ -1,5 +1,5 @@
 import { InfoCard } from "./info-card";
-import { InfoData } from "@/pages/home/data/data";
+import { InfoData } from "@/pages/Home/data/data.js";
 
 export const Info = () => {
   return (

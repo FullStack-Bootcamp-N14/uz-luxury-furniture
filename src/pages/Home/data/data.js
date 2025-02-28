@@ -1,8 +1,8 @@
-import Product from "../../../assets/svg/product-img-1.svg";
-import CarIcon from "../../../assets/svg/carIcon.svg";
-import BlockIcon from "../../../assets/svg/blockInco.svg";
-import LockIcon from "../../../assets/svg/lockicon.svg";
-import PhoneIcon from "../../../assets/svg/phoneIcon.svg";
+import Product from "@/assets/svg/product-img-1.svg";
+import CarIcon from "@/assets/svg/carIcon.svg";
+import BlockIcon from "@/assets/svg/blockInco.svg";
+import LockIcon from "@/assets/svg/lockIcon.svg";
+import PhoneIcon from "@/assets/svg/phoneIcon.svg";
 
 export const ProductData = [
   {
