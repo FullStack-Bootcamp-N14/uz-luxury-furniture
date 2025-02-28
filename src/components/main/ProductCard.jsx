@@ -10,11 +10,11 @@ export const ProductCard = ({
 }) => {
   return (
     <div>
-      <div className="relative ">
+      <div className="relative">
         <img
           src={img}
           alt=""
-          className="w-[231px] h-[308px] object-cover xl:w-[262px] xl:h-[349px]"
+          className="w-full object-cover  h-[308px] xl:h-[349px]"
         />
         <span className=" absolute py-[4px] px-[14px] top-[16px] left-[16px] bg-[#fff] rounded-[4px]  ">
           <p className="font-bold text-[16px] leading-[100%] text-[#000] text-center">

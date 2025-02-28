@@ -44,6 +44,7 @@ export const ProductDetail = () => {
                   (item, index) =>
                     index !== 0 ? (
                       <img
+                        key={index + Math.random()}
                         src={item}
                         alt=""
                         className="w-full h-full object-cover"

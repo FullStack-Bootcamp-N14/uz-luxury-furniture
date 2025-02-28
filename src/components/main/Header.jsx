@@ -43,24 +43,28 @@ const Header = () => {
           style={open ? { left: "0px" } : { left: "-100%" }}
         >
           <NavLink
+            onClick={() => setOpen(false)}
             to="/"
             className="hover:text-black text-2xl lg:text-base lg:text-[#6C7275] duration-200"
           >
             Home
           </NavLink>
           <NavLink
+            onClick={() => setOpen(false)}
             to="/shop"
             className="hover:text-black text-2xl lg:text-base lg:text-[#6C7275] duration-200"
           >
             Shop
           </NavLink>
           <NavLink
-            to="/product"
+            onClick={() => setOpen(false)}
+            to="/products/1"
             className="hover:text-black text-2xl lg:text-base lg:text-[#6C7275] duration-200"
           >
             Product
           </NavLink>
           <NavLink
+            onClick={() => setOpen(false)}
             to="/contact"
             className="hover:text-black text-2xl lg:text-base lg:text-[#6C7275] duration-200"
           >
