@@ -14,3 +14,27 @@
 .container {
   @apply mx-auto px-4 sm:px-8 lg:px-16 xl:px-20 2xl:px-24;
 }
+
+@layer utilities {
+  /* Scrollbarni ingichka qilish */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* Scroll track (orqa fond) */
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  /* Scroll bar (harakatlanuvchi qismi) */
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #807e7e;
+    border-radius: 10px;
+  }
+
+  /* Hover effekti */
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
