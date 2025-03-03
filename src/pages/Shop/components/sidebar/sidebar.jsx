@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { VscSettings } from "react-icons/vsc";
 import { Link } from "react-router-dom";
-import tickIcon from '../../../../assets/svg/sidebar-tick-icon.svg'
+import tickIcon from "../../../../assets/svg/sidebar-tick-icon.svg";
 
 const links = [
   { name: "All Rooms", path: "#" },
@@ -28,14 +28,33 @@ const prices = [
 const Sidebar = () => {
   const [active, setActive] = useState("All Rooms");
   const [choosePrice, setChoosePrice] = useState(null);
+  const [toggleBar, setToggleBar] = useState(false);
+  const controlBarRef = useRef(null);
 
+  const onClick = () => {
+    if (!toggleBar) {
+      controlBarRef.current.style.cssText = `
+        left: 0;
+        z-index: 10;
+        background-color: #cbc7c774;
+      `;
+
+      setToggleBar(true)
+    } else {
+      controlBarRef.current.style = "left: -100%;";
+      setToggleBar(false)
+    }
+  };
   return (
-    <aside className="w-1/4">
-      <button className="flex gap-[8px] items-center mb-[32px]">
+    <aside className="w-2/4 lg:w-1/4">
+      <button
+        onClick={onClick}
+        className="flex gap-[8px] items-center mb-[32px]"
+      >
         <VscSettings className="w-[24px] h-[24px]" />
         <p className="text-[20px] font-semibold">Filter</p>
       </button>
-      <div className="w-full">
+      <div ref={controlBarRef} className="w-full absolute -left-full lg:sticky">
         <div className="mb-[32px]">
           <h3 className="font-semibold text-[18px]/[162%] mb-[16px] text-[#121212]">
             CATEGORIES
@@ -65,17 +84,26 @@ const Sidebar = () => {
           <ul className="w-full flex flex-col gap-[9px]">
             {prices.map((item, index) => (
               <li key={index} className="flex items-center justify-between">
-                <p className="text-[#6c7275] font-semibold text-[15px]">{item.name}</p>
+                <p className="text-[#6c7275] font-semibold text-[15px]">
+                  {item.name}
+                </p>
                 <input
-                name="productPrice"
-                onFocus={() => setChoosePrice(item.name)}
-                className="opacity-0 absolute"
-                id={`allPrice${index}`}
-                type="radio"
-              />
-              <label className={`w-[24px] h-[24px] cursor-pointer rounded-[4px] ${item.name !== choosePrice ? 'border-2 border-[#6c7275]': 'bg-[#141718] flex items-center justify-center'}`} htmlFor={`allPrice${index}`}>
-                {item.name === choosePrice? <img src={tickIcon} />: ""}
-              </label>
+                  name="productPrice"
+                  onFocus={() => setChoosePrice(item.name)}
+                  className="opacity-0 absolute"
+                  id={`allPrice${index}`}
+                  type="radio"
+                />
+                <label
+                  className={`w-[24px] h-[24px] cursor-pointer rounded-[4px] ${
+                    item.name !== choosePrice
+                      ? "border-2 border-[#6c7275]"
+                      : "bg-[#141718] flex items-center justify-center"
+                  }`}
+                  htmlFor={`allPrice${index}`}
+                >
+                  {item.name === choosePrice ? <img src={tickIcon} /> : ""}
+                </label>
               </li>
             ))}
           </ul>

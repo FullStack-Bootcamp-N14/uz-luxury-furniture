@@ -3,7 +3,7 @@ import { ProductData } from "@/pages/Home/data/data.js";
 
 const ProductGrid = () => {
   return (
-    <section className="grid grid-cols-3 gap-6">
+    <section className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-6">
       {ProductData.map((item) => (
         <ProductCard
           key={item.id}

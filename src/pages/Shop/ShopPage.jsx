@@ -7,12 +7,12 @@ import ProductControl from "./components/product-control/product-control";
 const ShopPage = () => {
   return (
     <main className="">
-      <Hero />
+      {/* <Hero /> */}
       <div className="container pt-[60px] pb-[100px]">
         {/* <ProductControl /> */}
-        <div className="flex gap-x-6">
+        <div className="flex flex-col gap-y-16 lg:flex-row lg:gap-x-16">
           <Sidebar />
-          <main className="w-3/4">
+          <main className="w-full lg:w-3/4">
             <Nav />
             <ProductGrid />
           </main>

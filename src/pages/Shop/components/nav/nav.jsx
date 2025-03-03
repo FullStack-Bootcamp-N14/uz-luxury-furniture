@@ -30,7 +30,7 @@ const Nav = () => {
       <h3 className="font-semibold text-[20px] ">Living Room</h3>
       <div className="flex items-center gap-[32px]">
         <p className="text-[#121212] font-semibold">Sort by</p>
-        <div className="flex">
+        <div className="hidden md:flex">
           {icons.map((item) => (
             <button
               key={item.id}
