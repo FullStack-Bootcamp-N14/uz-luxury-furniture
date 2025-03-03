@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
-import { VscSettings } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import tickIcon from "@/assets/svg/sidebar-tick-icon.svg";
+import { IoMdClose } from "react-icons/io";
 
 const links = [
   { name: "All Rooms", path: "#" },
@@ -25,23 +25,26 @@ const prices = [
   { name: "$400.00+", id: 6 },
 ];
 
-const Sidebar = () => {
+const SidebarRS = ({ open, openFn }) => {
   const [active, setActive] = useState("All Rooms");
   const [choosePrice, setChoosePrice] = useState(null);
   const controlBarRef = useRef(null);
 
   return (
-    <aside className="w-2/4 lg:w-1/4 hidden lg:block">
-      <button className="flex gap-[8px] items-center mb-[32px]">
-        <VscSettings className="w-[24px] h-[24px]" />
-        <p className="text-[20px] font-semibold">Filter</p>
-      </button>
-      <div ref={controlBarRef} className="w-full absolute -left-full lg:sticky">
+    <aside
+      className="w-full h-screen flex items-center lg:hidden fixed top-0 z-50 bg-[#fffffff3] duration-200"
+      style={open ? { right: 0 } : { right: "-100%" }}
+    >
+      <IoMdClose
+        className="text-3xl absolute top-8 right-4 cursor-pointer"
+        onClick={() => openFn(false)}
+      />
+      <div className="container">
         <div className="mb-[32px]">
-          <h3 className="font-semibold text-[18px]/[162%] mb-[16px] text-[#121212]">
+          <h3 className="font-semibold text-[18px]/[162%] mb-4 text-[#121212]">
             CATEGORIES
           </h3>
-          <ul className="flex flex-col gap-[12px] h-[264px] overflow-auto custom-scrollbar">
+          <ul className="flex flex-col gap-[12px] h-[300px] overflow-auto custom-scrollbar">
             {links.map((link) => (
               <li key={link.name}>
                 <Link
@@ -70,10 +73,10 @@ const Sidebar = () => {
                   {item.name}
                 </p>
                 <input
-                  name="productPrice"
+                  name="productPriceRs"
                   onFocus={() => setChoosePrice(item.name)}
                   className="opacity-0 absolute"
-                  id={`allPrice${index}`}
+                  id={`allPrice2${index}`}
                   type="radio"
                 />
                 <label
@@ -82,7 +85,7 @@ const Sidebar = () => {
                       ? "border-2 border-[#6c7275]"
                       : "bg-[#141718] flex items-center justify-center"
                   }`}
-                  htmlFor={`allPrice${index}`}
+                  htmlFor={`allPrice2${index}`}
                 >
                   {item.name === choosePrice ? <img src={tickIcon} /> : ""}
                 </label>
@@ -95,4 +98,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarRS;

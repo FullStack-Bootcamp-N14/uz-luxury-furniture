@@ -1,8 +1,9 @@
+import navIcon1 from "@/assets/svg/nav-icon1.svg";
+import navIcon2 from "@/assets/svg/nav-icon2.svg";
+import navIcon3 from "@/assets/svg/nav-icon3.svg";
+import navIcon4 from "@/assets/svg/nav-icon4.svg";
 import { useState } from "react";
-import navIcon1 from "../../../../assets/svg/nav-icon1.svg";
-import navIcon2 from "../../../../assets/svg/nav-icon2.svg";
-import navIcon3 from "../../../../assets/svg/nav-icon3.svg";
-import navIcon4 from "../../../../assets/svg/nav-icon4.svg";
+import { VscSettings } from "react-icons/vsc";
 
 const icons = [
   {
@@ -23,13 +24,22 @@ const icons = [
   },
 ];
 
-const Nav = () => {
+const Nav = ({ openFn }) => {
   const [chooseSelect, setChooseSelect] = useState(0);
   return (
     <div className="mb-[32px] flex items-center justify-between">
-      <h3 className="font-semibold text-[20px] ">Living Room</h3>
+      <div className="flex items-center">
+        <h3 className="font-semibold text-[20px] mr-4 sm:mr-8">Living Room</h3>
+        <button
+          className="flex gap-[8px] items-center lg:hidden"
+          onClick={() => openFn(true)}
+        >
+          <VscSettings className="w-[24px] h-[24px]" />
+          <p className="text-[20px] font-semibold">Filter</p>
+        </button>
+      </div>
       <div className="flex items-center gap-[32px]">
-        <p className="text-[#121212] font-semibold">Sort by</p>
+        <p className="text-[#121212] font-semibold text-xl">Sort by</p>
         <div className="hidden md:flex">
           {icons.map((item) => (
             <button

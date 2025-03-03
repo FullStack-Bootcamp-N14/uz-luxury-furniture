@@ -14,7 +14,7 @@ const Header = () => {
   const [show, setShow] = useState(true);
 
   return (
-    <header className="bg-white sticky top-0 w-full z-50">
+    <header className="bg-white sticky top-0 w-full z-40">
       <Advertize setShow={setShow} show={show} />
       <div className="container py-4 flex items-center justify-between">
         <div className="flex items-center">
