@@ -3,36 +3,58 @@ import { Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "./slider.css";
-import { ProductData } from "@/pages/Home/data/data";
 import { ProductCard } from "@/components/main/ProductCard";
+import axios from "@/api/axios.js";
+import { useQuery } from "@tanstack/react-query";
 
 export const SliderCard = () => {
+  const getByCategory = async (category) => {
+    try {
+      const { data } = await axios.get(`/products/category/${category}`);
+      console.log(data);
+
+      return data.products;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const { data, isLoading, error, isError } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => getByCategory("furniture"),
+  });
+
   return (
-    <Swiper
-      modules={[Scrollbar]}
-      spaceBetween={16}
-      scrollbar={{ draggable: true }}
-      direction="horizontal"
-      loop={true}
-      breakpoints={{
-        320: { slidesPerView: 1 },
-        640: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-        1280: { slidesPerView: 4 },
-      }}
-      className="product__card--slider"
-    >
-      {ProductData.map((item) => (
-        <SwiperSlide key={item.id} className="mb-[45px] w-[231px]">
-          <ProductCard
-            img={item.img}
-            title={item.title}
-            price={item.price}
-            old_price={item.old_price}
-            skidka={item.skidka}
-          />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <>
+      {isLoading && <div>Loading...</div>}
+      {isError && <div>{error.message}</div>}
+      {data && (
+        <Swiper
+          modules={[Scrollbar]}
+          spaceBetween={16}
+          scrollbar={{ draggable: true }}
+          direction="horizontal"
+          loop={true}
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1280: { slidesPerView: 4 },
+          }}
+          className="product__card--slider"
+        >
+          {data.map((item) => (
+            <SwiperSlide key={item.id} className="mb-[45px] w-[231px]">
+              <ProductCard
+                img={item.thumbnail}
+                title={item.title}
+                price={item.price}
+                old_price={item.price + 5}
+                skidka={String(item.price * 0.9)}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
+    </>
   );
 };

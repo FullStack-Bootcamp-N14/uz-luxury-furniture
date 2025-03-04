@@ -1,7 +1,9 @@
 import { useRef, useState } from "react";
 import { VscSettings } from "react-icons/vsc";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import tickIcon from "@/assets/svg/sidebar-tick-icon.svg";
+import axios from "@/api/axios.js";
+import { useQuery } from "@tanstack/react-query";
 
 const links = [
   { name: "All Rooms", path: "#" },
@@ -25,10 +27,31 @@ const prices = [
   { name: "$400.00+", id: 6 },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ filter }) => {
   const [active, setActive] = useState("All Rooms");
   const [choosePrice, setChoosePrice] = useState(null);
   const controlBarRef = useRef(null);
+
+  const getAllCategory = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://dummyjson.com/products/categories"
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const { data, isLoading, error, isError } = useQuery({
+    queryKey: ["all-categories"],
+    queryFn: getAllCategory,
+  });
+
+  function clickFilter(link) {
+    setActive(link.name);
+    filter(link.name);
+  }
 
   return (
     <aside className="w-2/4 lg:w-1/4 hidden lg:block">
@@ -42,11 +65,11 @@ const Sidebar = () => {
             CATEGORIES
           </h3>
           <ul className="flex flex-col gap-[12px] h-[264px] overflow-auto custom-scrollbar">
-            {links.map((link) => (
+            {data?.map((link) => (
               <li key={link.name}>
-                <Link
+                <span
                   to={link.path}
-                  onClick={() => setActive(link.name)}
+                  onClick={() => clickFilter(link)}
                   className={`font-semibold text-[18px] ${
                     active === link.name
                       ? "text-black border-b-2 border-black"
@@ -54,7 +77,7 @@ const Sidebar = () => {
                   }`}
                 >
                   {link.name}
-                </Link>
+                </span>
               </li>
             ))}
           </ul>

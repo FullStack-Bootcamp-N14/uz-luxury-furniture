@@ -1,18 +1,18 @@
 import { ProductCard } from "@/components/main/ProductCard";
-import { ProductData } from "@/pages/Home/data/data.js";
+// import { ProductData } from "@/pages/Home/data/data.js";
 
-const ProductGrid = () => {
+const ProductGrid = ({ products }) => {
   return (
     <>
       <section className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-6">
-        {ProductData.map((item) => (
+        {products.map((item) => (
           <ProductCard
             key={item.id}
-            img={item.img}
+            img={item.thumbnail}
             title={item.title}
             price={item.price}
-            old_price={item.old_price}
-            skidka={item.skidka}
+            old_price={item.price + 5}
+            skidka={String(item.price * 0.9)}
           />
         ))}
       </section>
