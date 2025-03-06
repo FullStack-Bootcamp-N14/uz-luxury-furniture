@@ -8,10 +8,12 @@ import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 import Advertize from "../ui/Advertize";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(true);
+  const likes = useSelector((state) => state.wishlist.count);
 
   return (
     <header className="bg-white sticky top-0 w-full z-40">
@@ -77,18 +79,18 @@ const Header = () => {
           <Link to="/">
             <FaRegUserCircle className="text-[22px]" />
           </Link>
-          <div className="relative">
+          <Link to="/cart" className="block relative">
             <IoCartOutline className="text-[27px]" />
             <span className="absolute bottom-0 -right-[6px] w-4 h-4 flex items-center justify-center text-[10px] bg-[#6C7275] text-white font-medium rounded-full">
               5
             </span>
-          </div>
-          <div className="relative">
+          </Link>
+          <Link to="/wishlist" className="block relative">
             <FaRegHeart className="text-[22px]" />
             <span className="absolute bottom-0 -right-[6px] w-4 h-4 flex items-center justify-center text-[10px] bg-[#6C7275] text-white font-medium rounded-full">
-              3
+              {likes}
             </span>
-          </div>
+          </Link>
         </div>
       </div>
     </header>

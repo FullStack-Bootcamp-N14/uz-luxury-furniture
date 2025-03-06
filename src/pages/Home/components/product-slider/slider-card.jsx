@@ -42,15 +42,9 @@ export const SliderCard = () => {
           }}
           className="product__card--slider"
         >
-          {data.map((item) => (
+          {data?.map((item) => (
             <SwiperSlide key={item.id} className="mb-[45px] w-[231px]">
-              <ProductCard
-                img={item.thumbnail}
-                title={item.title}
-                price={item.price}
-                old_price={item.price + 5}
-                skidka={String(item.price * 0.9)}
-              />
+              <ProductCard productData={item} />
             </SwiperSlide>
           ))}
         </Swiper>

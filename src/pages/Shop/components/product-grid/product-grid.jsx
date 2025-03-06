@@ -6,14 +6,7 @@ const ProductGrid = ({ products }) => {
     <>
       <section className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-6">
         {products.map((item) => (
-          <ProductCard
-            key={item.id}
-            img={item.thumbnail}
-            title={item.title}
-            price={item.price}
-            old_price={item.price + 5}
-            skidka={String(item.price * 0.9)}
-          />
+          <ProductCard key={item.id} productData={item} />
         ))}
       </section>
       <section className="flex justify-center mt-8 sm:mt-10 lg:mt-20">

@@ -5,19 +5,6 @@ import tickIcon from "@/assets/svg/sidebar-tick-icon.svg";
 import axios from "@/api/axios.js";
 import { useQuery } from "@tanstack/react-query";
 
-const links = [
-  { name: "All Rooms", path: "#" },
-  { name: "Living Room", path: "#" },
-  { name: "Bedroom", path: "#" },
-  { name: "Kitchen", path: "#" },
-  { name: "Bathroom", path: "#" },
-  { name: "Dinning", path: "#" },
-  { name: "Outdoor", path: "#" },
-  { name: "Room", path: "#" },
-  { name: "Garage", path: "#" },
-  { name: "Living", path: "#" },
-];
-
 const prices = [
   { name: "All Price", id: 1 },
   { name: "$0.00 - 99.99", id: 2 },
@@ -28,7 +15,7 @@ const prices = [
 ];
 
 const Sidebar = ({ filter }) => {
-  const [active, setActive] = useState("All Rooms");
+  const [active, setActive] = useState("all");
   const [choosePrice, setChoosePrice] = useState(null);
   const controlBarRef = useRef(null);
 
@@ -65,12 +52,24 @@ const Sidebar = ({ filter }) => {
             CATEGORIES
           </h3>
           <ul className="flex flex-col gap-[12px] h-[264px] overflow-auto custom-scrollbar">
+            <li>
+              <span
+                onClick={() => clickFilter({ name: "all" })}
+                className={`font-semibold text-[18px] cursor-pointer ${
+                  active === "all"
+                    ? "text-black border-b-2 border-black"
+                    : "text-[#807e7e]"
+                }`}
+              >
+                All products
+              </span>
+            </li>
             {data?.map((link) => (
               <li key={link.name}>
                 <span
                   to={link.path}
                   onClick={() => clickFilter(link)}
-                  className={`font-semibold text-[18px] ${
+                  className={`font-semibold text-[18px] cursor-pointer ${
                     active === link.name
                       ? "text-black border-b-2 border-black"
                       : "text-[#807e7e]"

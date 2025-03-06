@@ -1,20 +1,9 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import tickIcon from "@/assets/svg/sidebar-tick-icon.svg";
 import { IoMdClose } from "react-icons/io";
-
-const links = [
-  { name: "All Rooms", path: "#" },
-  { name: "Living Room", path: "#" },
-  { name: "Bedroom", path: "#" },
-  { name: "Kitchen", path: "#" },
-  { name: "Bathroom", path: "#" },
-  { name: "Dinning", path: "#" },
-  { name: "Outdoor", path: "#" },
-  { name: "Room", path: "#" },
-  { name: "Garage", path: "#" },
-  { name: "Living", path: "#" },
-];
+import axios from "@/api/axios.js";
+import { useQuery } from "@tanstack/react-query";
 
 const prices = [
   { name: "All Price", id: 1 },
@@ -25,10 +14,32 @@ const prices = [
   { name: "$400.00+", id: 6 },
 ];
 
-const SidebarRS = ({ open, openFn }) => {
-  const [active, setActive] = useState("All Rooms");
+const SidebarRS = ({ open, openFn, filter }) => {
+  const [active, setActive] = useState("all");
   const [choosePrice, setChoosePrice] = useState(null);
   const controlBarRef = useRef(null);
+
+  const getAllCategory = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://dummyjson.com/products/categories"
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const { data, isLoading, error, isError } = useQuery({
+    queryKey: ["all-categories-rs"],
+    queryFn: getAllCategory,
+  });
+
+  function clickFilter(link) {
+    setActive(link.name);
+    filter(link.name);
+    openFn(false);
+  }
 
   return (
     <aside
@@ -45,19 +56,30 @@ const SidebarRS = ({ open, openFn }) => {
             CATEGORIES
           </h3>
           <ul className="flex flex-col gap-[12px] h-[300px] overflow-auto custom-scrollbar">
-            {links.map((link) => (
+            <li>
+              <span
+                onClick={() => clickFilter({ name: "all" })}
+                className={`font-semibold text-[18px] cursor-pointer ${
+                  active === "all"
+                    ? "text-black border-b-2 border-black"
+                    : "text-[#807e7e]"
+                }`}
+              >
+                All products
+              </span>
+            </li>
+            {data?.map((link) => (
               <li key={link.name}>
-                <Link
-                  to={link.path}
-                  onClick={() => setActive(link.name)}
-                  className={`font-semibold text-[18px] ${
+                <span
+                  onClick={() => clickFilter(link)}
+                  className={`font-semibold text-[18px] cursor-pointer ${
                     active === link.name
                       ? "text-black border-b-2 border-black"
                       : "text-[#807e7e]"
                   }`}
                 >
                   {link.name}
-                </Link>
+                </span>
               </li>
             ))}
           </ul>

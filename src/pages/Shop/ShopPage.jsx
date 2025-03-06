@@ -32,7 +32,7 @@ const ShopPage = () => {
 
   return (
     <main className="">
-      <SidebarRS open={openRs} openFn={setOpenRs} />
+      <SidebarRS open={openRs} openFn={setOpenRs} filter={setFilter} />
       <Hero />
       <div className="container pt-6 lg:pt-[60px] pb-12 lg:pb-[100px]">
         <div className="flex flex-col gap-y-0 lg:flex-row lg:gap-x-16">
