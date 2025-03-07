@@ -4,6 +4,7 @@ import { VscSettings } from "react-icons/vsc";
 import tickIcon from "@/assets/svg/sidebar-tick-icon.svg";
 import axios from "@/api/axios.js";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "@/components/ui/loading/Loading";
 
 const prices = [
   { name: "All Price", id: 1 },
@@ -51,35 +52,39 @@ const Sidebar = ({ filter }) => {
           <h3 className="font-semibold text-[18px]/[162%] mb-[16px] text-[#121212]">
             CATEGORIES
           </h3>
-          <ul className="flex flex-col gap-[12px] h-[264px] overflow-auto custom-scrollbar">
-            <li>
-              <span
-                onClick={() => clickFilter({ name: "all" })}
-                className={`font-semibold text-[18px] cursor-pointer ${
-                  active === "all"
-                    ? "text-black border-b-2 border-black"
-                    : "text-[#807e7e]"
-                }`}
-              >
-                All products
-              </span>
-            </li>
-            {data?.map((link) => (
-              <li key={link.name}>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <ul className="flex flex-col gap-[12px] h-[264px] overflow-auto custom-scrollbar">
+              <li>
                 <span
-                  to={link.path}
-                  onClick={() => clickFilter(link)}
+                  onClick={() => clickFilter({ name: "all" })}
                   className={`font-semibold text-[18px] cursor-pointer ${
-                    active === link.name
+                    active === "all"
                       ? "text-black border-b-2 border-black"
                       : "text-[#807e7e]"
                   }`}
                 >
-                  {link.name}
+                  All products
                 </span>
               </li>
-            ))}
-          </ul>
+              {data?.map((link) => (
+                <li key={link.name}>
+                  <span
+                    to={link.path}
+                    onClick={() => clickFilter(link)}
+                    className={`font-semibold text-[18px] cursor-pointer ${
+                      active === link.name
+                        ? "text-black border-b-2 border-black"
+                        : "text-[#807e7e]"
+                    }`}
+                  >
+                    {link.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <div>
           <h3 className="font-semibold text-[18px]/[162%] mb-[16px] text-[#121212]">

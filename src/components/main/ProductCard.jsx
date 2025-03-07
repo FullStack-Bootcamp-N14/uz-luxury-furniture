@@ -1,6 +1,7 @@
 import Reating from "@/assets/svg/reating.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addLike, removeLike } from "@/store/slices/wishlist.slice";
+import { addCart, removeCart } from "@/store/slices/cart.slice";
 import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
@@ -9,7 +10,9 @@ import { IoCartSharp } from "react-icons/io5";
 
 export const ProductCard = ({ productData }) => {
   const [isLike, setIsLike] = useState(false);
+  const [isCart, setIsCart] = useState(false);
   const likeProducts = useSelector((state) => state.wishlist.likes);
+  const cartProducts = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 
   const clickLike = () => {
@@ -19,22 +22,36 @@ export const ProductCard = ({ productData }) => {
       : dispatch(removeLike(productData));
   };
 
+  const clickCart = () => {
+    setIsCart(!isCart);
+    !isCart
+      ? dispatch(addCart(productData))
+      : dispatch(removeCart(productData));
+  };
+
   useEffect(() => {
-    let id = likeProducts?.find((item) => item.id === productData.id);
-    if (id) setIsLike(true);
+    let likeId = likeProducts?.find((item) => item.id === productData.id);
+    if (likeId) setIsLike(true);
+
+    let cartId = cartProducts?.find((item) => item.id === productData.id);
+    if (cartId) setIsCart(true);
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-gray-50 group">
+    <div className="relative overflow-hidden group">
       <div className="absolute top-5 right-5 z-10 flex flex-col items-center gap-y-2 duration-200 group-hover:right-5">
-        <span className="text-2xl">
-          <IoCartOutline className="cursor-pointer" />
-        </span>
         <span className="text-xl" onClick={clickLike}>
           {isLike ? (
             <FaHeart className="cursor-pointer" />
           ) : (
             <FaRegHeart className="cursor-pointer" />
+          )}
+        </span>
+        <span className="text-2xl" onClick={clickCart}>
+          {isCart ? (
+            <IoCartSharp className="cursor-pointer" />
+          ) : (
+            <IoCartOutline className="cursor-pointer" />
           )}
         </span>
       </div>

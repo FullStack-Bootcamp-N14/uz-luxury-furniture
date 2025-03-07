@@ -42,7 +42,11 @@ const HomeSlider = () => {
         >
           {data.map((item) => (
             <SwiperSlide key={item.id}>
-              <img className="home__slider--img" src={item.url} alt="img" />
+              <img
+                className="w-full h-[304px] sm:h-[55vh] xl:h-[70vh] object-cover"
+                src={item.url}
+                alt="img"
+              />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,12 +1,13 @@
-import Hero from "./components/shop-hero/hero";
+import Hero from "@/components/main/Hero";
 import Nav from "./components/nav/nav";
 import ProductGrid from "./components/product-grid/product-grid";
 import Sidebar from "./components/sidebar/sidebar";
 import SidebarRS from "./components/sidebar/sidebar-rs";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Contact from "@/components/main/Contact";
 import axios from "@/api/axios.js";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "@/components/ui/loading/Loading";
 
 const ShopPage = () => {
   const [openRs, setOpenRs] = useState(false);
@@ -33,18 +34,17 @@ const ShopPage = () => {
   return (
     <main className="">
       <SidebarRS open={openRs} openFn={setOpenRs} filter={setFilter} />
-      <Hero />
+      <Hero
+        title="Shop page"
+        description="Let’s design the place you always imagined."
+      />
       <div className="container pt-6 lg:pt-[60px] pb-12 lg:pb-[100px]">
         <div className="flex flex-col gap-y-0 lg:flex-row lg:gap-x-16">
           <Sidebar filter={setFilter} />
           <main className="w-full lg:w-3/4">
             <Nav openFn={setOpenRs} />
             {isError && <div>{error.message}</div>}
-            {isLoading ? (
-              <div>Loading...</div>
-            ) : (
-              <ProductGrid products={data} />
-            )}
+            {isLoading ? <Loading /> : <ProductGrid products={data} />}
           </main>
         </div>
       </div>

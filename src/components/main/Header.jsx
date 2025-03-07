@@ -14,6 +14,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(true);
   const likes = useSelector((state) => state.wishlist.count);
+  const carts = useSelector((state) => state.cart.count);
 
   return (
     <header className="bg-white sticky top-0 w-full z-40">
@@ -82,7 +83,7 @@ const Header = () => {
           <Link to="/cart" className="block relative">
             <IoCartOutline className="text-[27px]" />
             <span className="absolute bottom-0 -right-[6px] w-4 h-4 flex items-center justify-center text-[10px] bg-[#6C7275] text-white font-medium rounded-full">
-              5
+              {carts}
             </span>
           </Link>
           <Link to="/wishlist" className="block relative">

@@ -2,12 +2,19 @@ import item1 from "@/assets/png/ServiceGridItem1.png";
 import item2 from "@/assets/png/ServiceGridItem2.png";
 import item3 from "@/assets/png/ServiceGridItem3.png";
 import ArrowRight from "@/assets/svg/ArrowRight";
+import Title from "@/components/ui/Title";
 
 const ServiceGrid = () => {
   return (
     <section className="mt-[40px] mb-[48px] md:mb-[32px]">
+      <Title title="Simply Unique Simply Better." info="">
+        <p className="text-gray-500 font-medium">
+          <span className="text-gray-800">3legant</span> is a gift & decorations
+          store based in HCMC, Vietnam. Est since 2019.
+        </p>
+      </Title>
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr] gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr] gap-4 sm:gap-6">
           <div className="relative lg:col-span-1">
             <img src={item1} alt="Living Room" className="w-full" />
             <div className="absolute top-[48px] left-[48px]">

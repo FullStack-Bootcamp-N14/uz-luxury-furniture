@@ -6,7 +6,11 @@ const ReklamaHome = () => {
     <div className="w-full flex justify-center mb-10 sm:mb-20">
       <div className="flex flex-col items-center md:flex-row bg-[#f3f5f7]">
         <div className="w-full md:w-[50%] overflow-hidden">
-          <img className="w-full h-auto" src={img} alt="reclama rasmi" />
+          <img
+            className="w-full h-[375px] sm:h-auto"
+            src={img}
+            alt="reclama rasmi"
+          />
         </div>
         <div className="flex flex-col gap-[16px] mt-[32px] md:mt-0 md:w-[50%] mx-[32px] md:pr-[162px] md:pl-[72px] md:mx-0">
           <h3 className="font-bold text-base md:text-lg leading-[100%] uppercase text-[#377dff]">
