@@ -1,22 +1,60 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../pages/Home/HomePage";
-import ShopPage from "../pages/Shop/ShopPage";
-import Footer from "../components/main/Footer";
+import { lazy, Suspense } from "react";
 import Header from "../components/main/Header";
-import ProductPage from "../pages/Product/ProductPage";
-import Wishlist from "../pages/Wishlist/Wishlist";
-import CartPage from "../pages/Cart/CartPage";
+import Footer from "../components/main/Footer";
+import Loading from "../components/ui/loading/Loading";
+
+const HomePage = lazy(() => import("../pages/Home/HomePage"));
+const ShopPage = lazy(() => import("../pages/Shop/ShopPage"));
+const ProductPage = lazy(() => import("../pages/Product/ProductPage"));
+const Wishlist = lazy(() => import("../pages/Wishlist/Wishlist"));
+const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 
 const Router = () => {
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/products/:id" element={<ProductPage />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<Loading />}>
+              <HomePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/shop"
+          element={
+            <Suspense fallback={<Loading />}>
+              <ShopPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/products/:id"
+          element={
+            <Suspense fallback={<Loading />}>
+              <ProductPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Wishlist />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <Suspense fallback={<Loading />}>
+              <CartPage />
+            </Suspense>
+          }
+        />
       </Routes>
       <Footer />
     </>
